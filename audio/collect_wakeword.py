@@ -5,22 +5,16 @@ import numpy as np
 import sounddevice as sd
 from scipy.io.wavfile import write
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from config import SAMPLE_RATE,CLIP_DURATION,WAKEWORD_NAME
-
-def beep(freq=440, duration=0.3):
-    t = np.linspace(0, duration, int(sample_rate * duration), False)
-    tone = 0.5 * np.sin(2 * np.pi * freq * t)
-    sd.play(tone, samplerate=sample_rate)
-    sd.wait()
+from config import SAMPLE_RATE,CLIP_DURATION,WAKEWORD_NAME,beep
 
 duration=CLIP_DURATION
 sample_rate=SAMPLE_RATE
 samples=int(duration*sample_rate)
-num_wakeword_samples=20
+num_wakeword_samples=45
 
 os.makedirs("data/raw_wakeword", exist_ok=True)
 
-for i in range(num_wakeword_samples):
+for i in range(20,45):
     print("Get ready to say the wakeword ")
     time.sleep(2)
     beep()
